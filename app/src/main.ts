@@ -8,7 +8,7 @@ import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 
-import './assets/css/transitions.css'
+import './assets/css/styles.css'
 
 const vuetify = createVuetify({
     components,
