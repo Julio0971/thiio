@@ -1,8 +1,11 @@
 <script setup lang="ts">
-import { onMounted, ref, watch } from 'vue'
 import { useFetch } from '../composables'
+import { Pagination } from '../interfaces'
+import { onMounted, ref, watch } from 'vue'
+import TablePagination from './TablePagination.vue'
 
 const loading = ref(true)
+const pagination = ref({} as Pagination)
 
 const props = defineProps<{
     url: string
@@ -21,6 +24,8 @@ const getData = async (url: string) => {
         const { response, res } = await useFetch('get', url)
 
         if (response.ok) {
+            pagination.value = res as Pagination
+
             emit('setRecords', res.data as Object[])
         } else {
             throw new Error(res.message)
@@ -39,22 +44,29 @@ onMounted(() => getData(props.url))
 
 <template>
     <transition name="fade" mode="out-in">
-        <span aria-busy="true" v-if="loading">
+        <div class="d-flex justify-center" v-if="loading" key="loading">
             Loading...
-        </span>
+        </div>
 
-        <v-table v-else>
-            <thead>
-                <tr>
-                    <th
-                        v-text="header"
-                        v-for="header in props.headers"
-                    />
-                </tr>
-            </thead>
-            <tbody>
-                <slot />
-            </tbody>
-        </v-table>
+        <div v-else key="data">
+            <v-table >
+                <thead>
+                    <tr>
+                        <th
+                            v-text="header"
+                            v-for="header in props.headers"
+                        />
+                    </tr>
+                </thead>
+                <tbody>
+                    <slot />
+                </tbody>
+            </v-table>
+
+            <TablePagination
+                :pagination="pagination"
+                @get-data="getData"
+            />
+        </div>
     </transition>
 </template>

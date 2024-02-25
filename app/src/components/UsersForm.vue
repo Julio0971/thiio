@@ -186,6 +186,8 @@ const setValidationErrors = (validation_errors: any) => form.value.errors = {
                     block
                     class="mt-4"
                     text="Cancel"
+                    color="grey-lighten-3"
+                    variant="flat"
                     @click="emit('close')"
                 />
             </v-card-text>
