@@ -25,6 +25,8 @@ watch(() => current_page.value, p => {
     <v-pagination
         class="my-4"
         v-model="current_page"
-        :length="props.pagination.total"
+        :length="props.pagination.last_page"
+        prev-icon="fas fa-chevron-left"
+        next-icon="fas fa-chevron-right"
     ></v-pagination>
 </template>

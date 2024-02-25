@@ -2,6 +2,7 @@
 const model = defineModel()
 
 const props = defineProps<{
+    icon: string
     label: string
     error?: string
     required: boolean
@@ -18,5 +19,6 @@ const props = defineProps<{
         :label="props.label"
         :rules="props.rules"
         :required="props.required"
+        :prepend-icon="`fas fa-${props.icon}`"
     />
 </template>

@@ -54,6 +54,7 @@ onMounted(() => getData(props.url))
                     <tr>
                         <th
                             v-text="header"
+                            class="text-center"
                             v-for="header in props.headers"
                         />
                     </tr>

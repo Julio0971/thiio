@@ -29,22 +29,31 @@ const setRecords = (records: Object[]) => {
         @set-records="setRecords"
     >
         <tr v-for="user in users">
-            <td v-text="user.name" />
-            <td v-text="user.username" />
-            <td>
-                <v-btn icon color="#0D47A1">
-
-                </v-btn>
+            <td class="text-center" v-text="user.name" />
+            <td class="text-center" v-text="user.username" />
+            <td class="text-center">
+                <v-btn
+                    class="pb-1"
+                    variant="text"
+                    color="#0D47A1"
+                    icon="fas fa-eye"
+                />
             </td>
-            <td>
-                <v-btn icon color="#00695C">
-
-                </v-btn>
+            <td class="text-center">
+                <v-btn
+                    class="pb-1"
+                    variant="text"
+                    color="#00695C"
+                    icon="fas fa-edit"
+                />
             </td>
-            <td>
-                <v-btn icon color="#E53935">
-
-                </v-btn>
+            <td class="text-center">
+                <v-btn
+                    class="pb-1"
+                    variant="text"
+                    color="#E53935"
+                    icon="fas fa-trash"
+                />
             </td>
         </tr>
     </TableList>

@@ -148,6 +148,7 @@ const setValidationErrors = (validation_errors: any) => form.value.errors = {
                 >
                     <FormInputText
                         required
+                        icon="user"
                         type="text"
                         label="Name"
                         :rules="rules.name"
@@ -157,6 +158,7 @@ const setValidationErrors = (validation_errors: any) => form.value.errors = {
                     
                     <FormInputText
                         required
+                        icon="user"
                         type="text"
                         label="Username"
                         :rules="rules.username"
@@ -166,6 +168,7 @@ const setValidationErrors = (validation_errors: any) => form.value.errors = {
                     
                     <FormInputText
                         required
+                        icon="lock"
                         type="password"
                         label="Password"
                         :rules="rules.password"
@@ -175,6 +178,7 @@ const setValidationErrors = (validation_errors: any) => form.value.errors = {
                     
                     <FormInputText
                         required
+                        icon="lock"
                         type="password"
                         label="Password confirmation"
                         :rules="rules.password_confirmation"
