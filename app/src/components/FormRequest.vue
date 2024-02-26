@@ -7,9 +7,10 @@ const validation_errors = ref({} as any)
 
 const props = defineProps<{
     url: string
-    data: Object
+    data?: Object
     isValid: boolean
     buttonText: string
+    method: 'post' | 'put' | 'delete'
 }>()
 
 const emit = defineEmits<{
@@ -25,7 +26,7 @@ const save = async () => {
     loading.value = true
 
     try {
-        const { response, res } = await useFetch('post', props.url, props.data)
+        const { response, res } = await useFetch(props.method, props.url, props.data)
 
         if (response.ok) {
             if (res.message) {

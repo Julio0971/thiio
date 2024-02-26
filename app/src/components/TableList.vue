@@ -45,7 +45,7 @@ onMounted(() => getData(props.url))
 <template>
     <transition name="fade" mode="out-in">
         <div class="d-flex justify-center" v-if="loading" key="loading">
-            Loading...
+            <v-progress-circular indeterminate />
         </div>
 
         <div v-else key="data">

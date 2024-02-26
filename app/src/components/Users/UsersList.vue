@@ -1,10 +1,16 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { User } from '../interfaces'
-import TableList from '../components/TableList.vue'
+import { User } from '../../interfaces'
+import TableList from '../TableList.vue'
 
 const props = defineProps<{
     refresh: number
+}>()
+
+const emit = defineEmits<{
+    (e: 'showUserInfo', user: User): void
+    (e: 'showUserForm', user: User): void
+    (e: 'showUserDeletion', user: User): void
 }>()
 
 const users = ref([] as User[])
@@ -37,6 +43,7 @@ const setRecords = (records: Object[]) => {
                     variant="text"
                     color="#0D47A1"
                     icon="fas fa-eye"
+                    @click="emit('showUserInfo', user)"
                 />
             </td>
             <td class="text-center">
@@ -45,6 +52,7 @@ const setRecords = (records: Object[]) => {
                     variant="text"
                     color="#00695C"
                     icon="fas fa-edit"
+                    @click="emit('showUserForm', user)"
                 />
             </td>
             <td class="text-center">
@@ -53,6 +61,7 @@ const setRecords = (records: Object[]) => {
                     variant="text"
                     color="#E53935"
                     icon="fas fa-trash"
+                    @click="emit('showUserDeletion', user)"
                 />
             </td>
         </tr>
