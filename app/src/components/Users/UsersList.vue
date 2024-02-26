@@ -34,6 +34,12 @@ const setRecords = (records: Object[]) => {
         :refresh="props.refresh"
         @set-records="setRecords"
     >
+        <tr v-if="users.length == 0">
+            <td class="text-center" :colspan="headers.length">
+                No users to show
+            </td>
+        </tr>
+
         <tr v-for="user in users">
             <td class="text-center" v-text="user.name" />
             <td class="text-center" v-text="user.username" />

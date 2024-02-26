@@ -14,7 +14,9 @@ class UserController extends Controller
      * Display a listing of the resource.
      */
     public function index () {
-        return User::paginate(10);
+        $user = auth()->user();
+
+        return User::where('id', '<>', $user->id)->paginate(10);
     }
 
     /**
@@ -50,12 +52,15 @@ class UserController extends Controller
         $data = $request->validate([
             'name' => ['required', 'string'],
             'username' => ['required', 'string', Rule::unique('users')->ignore($user)],
-            'password' => ['required', 'string', 'min:8', 'confirmed']
+            'password' => ['nullable', 'present', 'string', 'min:8', 'confirmed']
         ]);
+
+        if ($data['password']) {
+            $user->password = Hash::make($data['password']);
+        }
 
         $user->name = $data['name'];
         $user->username = $data['username'];
-        $user->password = Hash::make($data['password']);
         $user->save();
 
         return response()->json([

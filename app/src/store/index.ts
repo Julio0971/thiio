@@ -7,11 +7,11 @@ export const useStore = defineStore('auth', () => {
     const snackbar_text = ref('')
     const show_snackbar = ref(false)
     const snackbar_type = ref('' as 'success' | 'error')
-    const api_token = ref(localStorage.getItem('api_token') ?? '')
+    const access_token = ref(localStorage.getItem('access_token') ?? '')
 
     return {
         user,
-        api_token,
+        access_token,
         show_snackbar,
         snackbar_type,
         snackbar_text,
