@@ -2,10 +2,39 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+    /**
+     * Register new user with given credentials.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function register (Request $request) {
+        $data = $request->validate([
+            'name' => ['required', 'string'],
+            'username' => ['required', 'string', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed']
+        ]);
+
+        $user = new User;
+        $user->name = $data['name'];
+        $user->username = $data['username'];
+        $user->password = Hash::make($data['password']);
+        $user->save();
+
+        $token = auth()->attempt($data);
+
+        return response()->json([
+            'access_token' => $token,
+            'message' => 'User registered successfully!',
+        ], 200);
+    }
+    
     /**
      * Get a JWT via given credentials.
      *
@@ -23,7 +52,9 @@ class AuthController extends Controller
             ], 422);
         }
 
-        return $this->respondWithToken($token);
+        return response()->json([
+            'access_token' => $token,
+        ], 200);
     }
 
     /**
