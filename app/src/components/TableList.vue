@@ -1,8 +1,11 @@
 <script setup lang="ts">
+import { useStore } from '../store'
 import { useFetch } from '../composables'
 import { Pagination } from '../interfaces'
 import { onMounted, ref, watch } from 'vue'
 import TablePagination from './TablePagination.vue'
+
+const store = useStore()
 
 const loading = ref(true)
 const pagination = ref({} as Pagination)
@@ -31,7 +34,9 @@ const getData = async (url: string) => {
             throw new Error(res.message)
         }
     } catch (error) {
-        console.log(error)
+        store.show_snackbar = true
+        store.snackbar_type = 'error'
+        store.snackbar_text = error as string
     } finally {
         loading.value = false
     }

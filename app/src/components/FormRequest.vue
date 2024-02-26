@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useStore } from '../store'
 import { useFetch } from '../composables'
+
+const store = useStore()
 
 const loading = ref(false)
 const validation_errors = ref({} as any)
@@ -30,7 +33,9 @@ const save = async () => {
 
         if (response.ok) {
             if (res.message) {
-                console.log(res.message);
+                store.show_snackbar = true
+                store.snackbar_type = 'success'
+                store.snackbar_text = res.message
             }
 
             emit('setData', res)
@@ -47,7 +52,9 @@ const save = async () => {
             throw new Error(res.message)
         }
     } catch (error) {
-        console.log(error);
+        store.show_snackbar = true
+        store.snackbar_type = 'error'
+        store.snackbar_text = error as string
     } finally {
         loading.value = false
     }
