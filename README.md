@@ -158,62 +158,62 @@ mysql
 ### Installation
 
 Clone the repo
-   ```bash
-   $ git clone https://github.com/Julio0971/thiio
-   ```
+```bash
+git clone https://github.com/Julio0971/thiio
+```
 
 #### Api setup
 
 1. Install composer dependencies
    ```bash
-   $ cd api
-   $ composer install
+   cd thiio/api
+   composer install
    ```
 2. Copy the .env file configuration
    ```bash
-   $ cp .env.example .env
+   cp .env.example .env
    ```
 3. Create a new project key
    ```bash
-   $ php artisan key:generate
+   php artisan key:generate
    ```
 4. Generate secret key
    ```bash
-   $ php artisan jwt:secret
+   php artisan jwt:secret
    ```
 5. Make a new database
    ```sql
    mysql> CREATE DATABASE thiio;
    ```
 6. Enter your database credentials to .env file
-   ```plain
+    ```plain
     DB_CONNECTION=mysql
     DB_HOST=127.0.0.1
     DB_PORT=3306
     DB_DATABASE=thiio
     DB_USERNAME=root
     DB_PASSWORD=password
-   ```
+    ```
 7. Run migrations and seeders
     ```bash
-    $ php artisan migrate --seed
+    php artisan migrate --seed
     ```
 
 #### App setup
 
 1. Install NPM packages
     ```bash
-   $ cd app
-   $ npm install
-   ```
+    cd thiio/app
+    npm install
+    ```
 2. Make the `.env.development.local` file configuration
-   ```bash
-   $ touch .env.development.local
-   ```
+    ```bash
+    touch .env.development.local
+    ```
 3. Add the following variable to `.env.development.local` file configuration
-   ```js
-   VITE_API_URL=http://localhost:8000/api
-   ```
+    ```js
+    VITE_API_URL=http://localhost:8000/api
+    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -224,11 +224,11 @@ Start the project
 
 1. Start api serve
     ```bash
-    $ php artisan serve --host=localhost
+    php artisan serve --host=localhost
     ```
 2. Start app
     ```bash
-    $ npm run dev
+    npm run dev
     ```
 3. Navigate to http://localhost:5173
 4. The following view should appear
@@ -325,11 +325,11 @@ In order to run the api tests follow the next steps:
 
 1. Navigate to api
 ```bash
-$ cd api
+cd thiio/api
 ```
 2. Execute the tests
 ```bash
-$ php artisan test
+php artisan test --testsuite=Feature --stop-on-failure
 ```
 
 ![Tests Screenshot][tests-screenshot]
