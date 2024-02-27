@@ -17,7 +17,7 @@ class AuthController extends Controller
     public function register (Request $request) {
         $data = $request->validate([
             'name' => ['required', 'string'],
-            'username' => ['required', 'string', 'unique:users'],
+            'username' => ['required', 'string', 'min:3', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed']
         ]);
 
@@ -42,7 +42,7 @@ class AuthController extends Controller
      */
     public function login (Request $request) {
         $data = $request->validate([
-            'username' => ['required', 'string', 'exists:users'],
+            'username' => ['required', 'string', 'min:3', 'exists:users'],
             'password' => ['required', 'string', 'min:8'],
         ]);
 
