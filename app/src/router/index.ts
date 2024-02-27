@@ -10,6 +10,7 @@ const routes = [
     { path: '/login', component: () => import('../views/Login.vue') },
     { path: '/users', component: () => import('../views/Users.vue') },
     { path: '/register', component: () => import('../views/Register.vue') },
+    { path: '/:catchAll(.*)', component: () => import('../views/NotFound.vue') },
 ]
 
 export const router = createRouter({ history, routes })
@@ -32,6 +33,7 @@ router.beforeEach(async (to, _from) => {
     } catch (error) {
         localStorage.removeItem('access_token')
 
+        store.user = {} as User
         store.access_token = ''
 
         if (to.path != '/login' && to.path != '/register') {
