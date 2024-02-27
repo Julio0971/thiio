@@ -4,6 +4,7 @@ import { User } from '../../interfaces'
 import TableList from '../TableList.vue'
 
 const props = defineProps<{
+    search: string
     refresh: number
 }>()
 
@@ -29,9 +30,9 @@ const setRecords = (records: Object[]) => {
 
 <template>
     <TableList
-        url="/users"
         :headers="headers"
         :refresh="props.refresh"
+        :url="`/users/${props.search}`"
         @set-records="setRecords"
     >
         <tr v-if="users.length == 0">

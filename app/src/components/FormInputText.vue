@@ -13,8 +13,10 @@ const props = defineProps<{
 
 <template>
     <v-text-field
+        persistent-hint
         v-model="model"
         :type="props.type"
+        :hint="props.error"
         variant="underlined"
         :label="props.label"
         :rules="props.rules"

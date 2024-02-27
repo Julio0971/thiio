@@ -17,5 +17,6 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     
     // Users
-    Route::apiResource('users', UserController::class);
+    Route::get('/users/{search?}', [UserController::class, 'index']);
+    Route::apiResource('users', UserController::class)->except('index');
 });

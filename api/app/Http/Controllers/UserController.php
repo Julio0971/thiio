@@ -6,6 +6,7 @@ use App\Models\User;
 
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -13,10 +14,10 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index () {
-        $user = auth()->user();
-
-        return User::where('id', '<>', $user->id)->paginate(10);
+    public function index ($search = '') {
+        return User::where('id', '<>', Auth::id())->where(function ($query) use ($search) {
+            $query->where('name', 'like', "%$search%")->orWhere('username', 'like', "%$search%");
+        })->paginate(10);
     }
 
     /**

@@ -1,5 +1,10 @@
+/* Styles */
 html {
     overflow-y: auto
+}
+
+.v-messages__message {
+    color: rgb(176, 0, 32);
 }
 
 /* Transitions */

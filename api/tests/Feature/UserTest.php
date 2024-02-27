@@ -44,9 +44,7 @@ class UserTest extends TestCase
     /** @test */
     public function an_authenticated_user_can_create_a_user () {
         // Arrange
-        $user_auth = User::factory()->create([
-            'username' => 'user_auth'
-        ]);
+        $user_auth = User::factory()->create();
         $user = [
             'name' => 'User test',
             'username' => 'usertest',
@@ -68,9 +66,7 @@ class UserTest extends TestCase
     /** @test */
     public function an_authenticated_user_can_retrieve_single_user () {
         // Arrange
-        $user_auth = User::factory()->create([
-            'username' => 'user_auth'
-        ]);
+        $user_auth = User::factory()->create();
         $user = User::factory()->create();
 
         // Act
@@ -90,9 +86,7 @@ class UserTest extends TestCase
     /** @test */
     public function an_authenticated_user_can_update_user () {
         // Arrange
-        $user_auth = User::factory()->create([
-            'username' => 'user_auth'
-        ]);
+        $user_auth = User::factory()->create();
         $user = User::factory()->create();
         $newData = [
             'name' => 'New user',
@@ -115,9 +109,7 @@ class UserTest extends TestCase
     /** @test */
     public function an_authenticated_user_can_delete_user () {
         // Arrange
-        $user_auth = User::factory()->create([
-            'username' => 'user_auth'
-        ]);
+        $user_auth = User::factory()->create();
         $user = User::factory()->create();
 
         // Act
@@ -131,9 +123,7 @@ class UserTest extends TestCase
     /** @test */
     public function an_user_requires_name_username_and_password () {
         // Arrange
-        $user_auth = User::factory()->create([
-            'username' => 'user_auth'
-        ]);
+        $user_auth = User::factory()->create();
         $user = [
             'name' => '',
             'username' => '',
@@ -159,9 +149,7 @@ class UserTest extends TestCase
     /** @test */
     public function an_user_username_and_password_requires_a_min_length () {
         // Arrange
-        $user_auth = User::factory()->create([
-            'username' => 'user_auth'
-        ]);
+        $user_auth = User::factory()->create();
         $user = [
             'name' => 'User test',
             'username' => 'te',
@@ -186,9 +174,7 @@ class UserTest extends TestCase
     /** @test */
     public function a_new_user_username_must_be_unique () {
         // Arrange
-        $user_auth = User::factory()->create([
-            'username' => 'user_auth'
-        ]);
+        $user_auth = User::factory()->create();
         $user = User::factory()->create([
             'username' => 'usertest',
         ]);
@@ -215,9 +201,7 @@ class UserTest extends TestCase
     /** @test */
     public function update_user_username_must_be_unique () {
         // Arrange
-        $user_auth = User::factory()->create([
-            'username' => 'user_auth'
-        ]);
+        $user_auth = User::factory()->create();
         User::factory()->create([
             'username' => 'usertest',
         ]);
@@ -243,9 +227,7 @@ class UserTest extends TestCase
     /** @test */
     public function password_must_be_confirmed () {
         // Arrange
-        $user_auth = User::factory()->create([
-            'username' => 'user_auth'
-        ]);
+        $user_auth = User::factory()->create();
         $user = [
             'name' => 'User test',
             'username' => 'usertest',

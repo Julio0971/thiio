@@ -8,7 +8,7 @@ const store = useStore()
     <v-snackbar
         multi-line
         v-model="store.show_snackbar"
-        :timeout="store.snackbar_type == 'success' ? 3000 : undefined"
+        :timeout="store.snackbar_type == 'success' ? 3000 : -1"
         :color="store.snackbar_type == 'success' ? '#00695C' : '#E53935'"
     >
         <div class="text-center">
