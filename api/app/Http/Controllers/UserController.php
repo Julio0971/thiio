@@ -25,7 +25,7 @@ class UserController extends Controller
     public function store (Request $request) {
         $data = $request->validate([
             'name' => ['required', 'string'],
-            'username' => ['required', 'string', 'unique:users'],
+            'username' => ['required', 'string', 'min:3', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed']
         ]);
 
@@ -51,7 +51,7 @@ class UserController extends Controller
     public function update (Request $request, User $user) {
         $data = $request->validate([
             'name' => ['required', 'string'],
-            'username' => ['required', 'string', Rule::unique('users')->ignore($user)],
+            'username' => ['required', 'string', 'min:3', Rule::unique('users')->ignore($user)],
             'password' => ['nullable', 'present', 'string', 'min:8', 'confirmed']
         ]);
 
