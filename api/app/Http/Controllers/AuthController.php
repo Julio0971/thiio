@@ -48,7 +48,9 @@ class AuthController extends Controller
 
         if (!$token = auth()->attempt($data)) {
             return response()->json([
-                'message' => 'Wrong credentials'
+                'errors' => [
+                    'password' => ['Wrong password']
+                ]
             ], 422);
         }
 

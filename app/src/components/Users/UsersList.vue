@@ -32,7 +32,7 @@ const setRecords = (records: Object[]) => {
     <TableList
         :headers="headers"
         :refresh="props.refresh"
-        :url="`/users/${props.search}`"
+        :url="`/get-users/${props.search}`"
         @set-records="setRecords"
     >
         <tr v-if="users.length == 0">

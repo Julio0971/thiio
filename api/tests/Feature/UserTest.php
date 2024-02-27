@@ -35,7 +35,7 @@ class UserTest extends TestCase
         // Arrange
 
         // Act
-        $response = $this->getJson('/api/users');
+        $response = $this->getJson('/api/get-users');
 
         // Assert
         $response->assertUnauthorized();
